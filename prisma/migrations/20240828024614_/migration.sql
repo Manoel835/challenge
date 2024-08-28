@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Reading" ALTER COLUMN "measureValue" SET DATA TYPE DOUBLE PRECISION;

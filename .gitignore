@@ -1,0 +1,6 @@
+.env
+docker-compose.yml
+package.json
+tsconfig.json
+package-lock.json
+node_modules
