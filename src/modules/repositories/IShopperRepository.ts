@@ -1,4 +1,4 @@
-import { Reading, Prisma } from '@prisma/client';
+import { Reading, Prisma} from '@prisma/client';
 
 export interface IReadingRepository {
   createReading(data: Prisma.ReadingCreateInput): Promise<Reading>;
@@ -13,4 +13,8 @@ export interface IReadingRepository {
     measureType: string,
     measureDatetime: Date
   ): Promise<Reading | null>;
+  findAllByCustomer(filters: {
+    customerCode: string;
+    measureType?: string;
+  }): Promise<Reading[]>;
 }

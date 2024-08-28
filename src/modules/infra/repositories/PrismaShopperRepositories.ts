@@ -7,6 +7,13 @@ export class PrismaReadingRepository implements IReadingRepository {
   constructor() {
     this.prisma = new PrismaClient();
   }
+  
+  async findAllByCustomer(filters: { customerCode: string; measureType?: string }): Promise<Reading[]> {
+    return this.prisma.reading.findMany({
+      where: filters,
+      orderBy: { measureDateTime: 'desc' },
+    });
+  }
 
   async createReading(data: Prisma.ReadingCreateInput): Promise<Reading> {
     return this.prisma.reading.create({
