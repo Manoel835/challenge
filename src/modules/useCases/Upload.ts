@@ -11,10 +11,8 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 
-// Carregar variáveis de ambiente do .env
 dotenv.config();
 
-// Obter a chave da API do Gemini e garantir que ela esteja definida
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY as string;
 if (!GEMINI_API_KEY) {
 	throw new Error(
@@ -207,14 +205,12 @@ export class UploadUseCase {
 		const filePath = path.join(uploadsDirectory, `${imageId}.png`);
 
 		try {
-			// Verifique se o diretório existe, e crie-o se não existir
 			if (!fs.existsSync(uploadsDirectory)) {
 				fs.mkdirSync(uploadsDirectory, { recursive: true });
 			}
 
-			// Salvar a imagem no caminho especificado
 			await fs.promises.writeFile(filePath, buffer);
-			return `/uploads/${imageId}.png`; // URL relativa para acesso
+			return `/uploads/${imageId}.png`; 
 		} catch (error) {
 			throw new Error('Error saving image: ' + (error as any).message);
 		}

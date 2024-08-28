@@ -1,9 +1,9 @@
 import { fastify } from './server';
-import { uploadRoutes } from '../src/modules/infra/http/routes';
+import { appRoutes } from '../src/modules/infra/http/routes';
 
 async function build() {
 	// Registre as rotas
-	fastify.register(uploadRoutes);
+	fastify.register(appRoutes);
 
 	// Rota de fallback para 404 Not Found
 	fastify.setNotFoundHandler((request, reply) => {
