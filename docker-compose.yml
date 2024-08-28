@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  app:
+    build: .
+    container_name: shopper-app
+    restart: always
+    ports:
+      - '3000:3000'
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    container_name: shopper-db
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: shopper
+      POSTGRES_PASSWORD: shopper
+      POSTGRES_DB: shopper
